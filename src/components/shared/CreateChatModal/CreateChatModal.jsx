@@ -14,7 +14,7 @@ export default function CreateChatModal() {
     style={{backgroundColor:"rgba(0,0,0,0.8)"}}
   >
     <div className="modal-dialog" style={{minWidth:"25%"}}>
-      <div className="modal-content" style={{backgroundColor:"rgb(32,33,35)"}}>
+      <div className="modal-content" style={{backgroundColor:"rgba(173, 173, 173, 0.8)"}}>
         <div className="modal-header">
           <h5 className="modal-title text-light">Chat add</h5>
           <button type="button" className="btn-close" onClick={()=>dispatch(AddChatModal(false))}></button>
@@ -44,9 +44,8 @@ export default function CreateChatModal() {
                   onChange={handleChange}
                   />
               </div>
-              <div className="modal-footer d-flex justify-content-between align-items-center">
-                <button type="button" className="btn text-light" style={{backgroundColor:"var(--new-message-color)",}} onClick={()=>dispatch(AddChatModal(false))}>Close</button>
-                <button type="submit" disabled={isSubmitting} className="btn text-light bg-success" style={{backgroundColor:"var(--chat-bg-color)",border:"none"}}>Create chat</button>
+              <div className="modal-footer d-flex justify-content-end align-items-center">
+                <button type="submit" disabled={isSubmitting} className="btn text-white bg-success" style={{backgroundColor:"var(--chat-bg-color)",border:"none"}}>Create chat</button>
               </div>
             </form>
           )}

@@ -100,7 +100,7 @@ export default function ShowChat() {
           chatDetails?.map((item, index) =>
             item?.sender?.username === username ? (
               <li className="my-3 row m-0" key={index}>
-                <div className="col-4 d-flex justify-content-end">
+                <div className="col-3 col-lg-5 d-flex justify-content-end">
                   {item?.event ? (
                     <div
                       className={`${style.message__event} card col-3 d-flex justify-content-center align-items-center text-light`}
@@ -134,9 +134,9 @@ export default function ShowChat() {
                     ""
                   )}
                 </div>
-                <div className="col-8 row cursor-pointer">
+                <div className="col-9 col-lg-7 row cursor-pointer p-0">
                   <div
-                    className="card border-0 rounded-3 col-9 px-3 py-2"
+                    className="card border-0 rounded-3  col-9 col-md-10 px-3 py-2"
                     style={{ backgroundColor: "var(--chat-bg-color)" }}
                     onClick={() => messageEvent({ id: item?.id, event: true })}
                   >
@@ -158,9 +158,9 @@ export default function ShowChat() {
                     </div>
                     <div className="text-white">{item?.text}</div>
                   </div>
-                  <div className="col-3 m-0 d-flex justify-content-center align-items-end">
+                  <div className="col-3 col-md-2 m-0 d-flex justify-content-center align-items-end p-0">
                     <div
-                      className="bg-secondary rounded-5 overflow-hidden position-relative"
+                      className="rounded-5 overflow-hidden position-relative"
                       style={{ width: "3rem",height:"3rem",border:"0.2rem solid var(--border-color)"}}
                     >
                       <img
@@ -178,8 +178,8 @@ export default function ShowChat() {
               </li>
             ) : (
               <li className="my-3 row m-0" key={index}>
-                <div className="col-8 row">
-                  <div className="col-3 m-0 d-flex justify-content-center align-items-end">
+                <div className="col-9 col-lg-7 row">
+                  <div className="col-3 col-md-2 m-0 px-1 d-flex justify-content-center align-items-end">
                     <div
                       className="rounded-5 overflow-hidden position-relative"
                       style={{ width: "3rem",height:"3rem",border:"0.2rem solid var(--border-color)"}}
@@ -196,7 +196,7 @@ export default function ShowChat() {
                     </div>
                   </div>
                   <div
-                    className="card  border-0 rounded-3 col-9 py-2"
+                    className="card border-0 rounded-3 col-9 col-md-10 py-2"
                     style={{ backgroundColor: "var(--chat-bg-color-1)" }}
                   >
                     <div className="d-flex justify-content-between align-items-center mb-1">
@@ -220,7 +220,7 @@ export default function ShowChat() {
                     <div className="text-white">{item?.text}</div>
                   </div>
                 </div>
-                <div className="col-4"></div>
+                <div className="col-3 col-lg-5"></div>
               </li>
             )
           )
