@@ -1,0 +1,3 @@
+.signIn::placeholder{
+    color: var(--bs-light-rgb)
+}
