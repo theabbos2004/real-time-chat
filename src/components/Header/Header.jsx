@@ -1,11 +1,11 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { memo, useCallback, useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMyChat } from "../../Hook/Api/ChatApi";
 import { isChatList, isChatsettings } from "../../Reducer/ChatReducer";
 import { SocketContext } from "../../contexts/SocketProvider";
 import ThemeSwitch from "../shared/ThemeSwitch/ThemeSwitch";
 
-export default function Header() {
+function Header() {
   const socket = useContext(SocketContext);
   const username = useSelector((store) => store?.authStore?.user?.username);
   const uid = useSelector((store) => store?.authStore?.user?.uid);
@@ -29,7 +29,6 @@ export default function Header() {
   useEffect(() => {
     getMyChatDetailsCallbalck();
   }, [socket?.socketOnMessage, getMyChatDetailsCallbalck]);
-
   return (
     <header
       className="py-1 d-flex justify-content-between align-items-center container"
@@ -71,3 +70,4 @@ export default function Header() {
     </header>
   );
 }
+export default memo(Header)

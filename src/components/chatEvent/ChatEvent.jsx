@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { DeleteChatModal } from "../shared/index";
 import { getMyChat } from "../../Hook/Api/ChatApi";
 
-export default function ChatEvent() {
+function ChatEvent() {
   const username = useSelector((store) => store?.authStore?.user?.username);
   const uid = useSelector((store) => store?.authStore?.user?.uid);
   const chatId = useSelector((store) => store?.chatStore?.chatId);
-  const allRefresh = useSelector((store) => store?.chatStore?.allRefresh);
 
   const [admin, setAdmin] = useState();
   const [isDeleteChatModal, SetIsDeleteChatModal] = useState();
 
   const [chatEvent, SetChatEvent] = useState([]);
-
+  
   useEffect(() => {
     SetChatEvent((state) => {
       state?.push({
@@ -33,7 +32,7 @@ export default function ChatEvent() {
     return () => {
       SetChatEvent([]);
     };
-  }, [uid, username, chatId, allRefresh]);
+  }, [uid, username, chatId]);
   return (
     <ul className="h-100 py-2 col container text-light overflow-y-scroll">
       {!chatId ? (
@@ -130,3 +129,4 @@ export default function ChatEvent() {
     </ul>
   );
 }
+export default memo(ChatEvent)

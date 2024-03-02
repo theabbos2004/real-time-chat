@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SendChatApi, getMessage, updateMessage } from "../../Hook/Api/ChatApi";
 import { messageIdReducer } from "../../Reducer/ChatReducer";
-export default function SendChat() {
+function SendChat() {
   const username = useSelector((store) => store?.authStore?.user?.username);
   const uid = useSelector((store) => store?.authStore?.user?.uid);
   const chatId = useSelector((store) => store?.chatStore?.chatId);
@@ -23,7 +23,7 @@ export default function SendChat() {
   useEffect(() => {
     dispatch(messageIdReducer(null));
     SetMessage();
-  }, [chatId, dispatch]);
+  }, [dispatch]);
 
   const updateMessageFunc = () => {
     updateMessage({
@@ -91,3 +91,4 @@ export default function SendChat() {
     </div>
   );
 }
+export default memo(SendChat)

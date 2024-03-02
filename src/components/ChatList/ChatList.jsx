@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { memo, useCallback, useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AddChatModal, isChatList, setChatId } from "../../Reducer/ChatReducer";
 import { getMyChats, getUsers } from "../../Hook/Api/ChatApi";
@@ -8,7 +8,7 @@ import { CreateChatModal } from "../shared/index";
 import { SocketContext } from "../../contexts/SocketProvider";
 import style from "./index.module.scss"
 
-export default function ChatList({ className }) {
+function ChatList({ className }) {
   const socket = useContext(SocketContext);
 
   const username = useSelector((store) => store?.authStore?.user?.username);
@@ -27,7 +27,7 @@ export default function ChatList({ className }) {
   const getMyChatListCallback = useCallback(() => {
     if (username && uid) {
       getMyChats({ username, usersecret: uid })
-        .then((res) => {
+      .then((res) => {
           if(chatId){
             let resultChats=res?.map(chat=>{
               if(chatId===chat?.id){
@@ -53,7 +53,6 @@ export default function ChatList({ className }) {
   useEffect(() => {
     getMyChatListCallback();
   }, [socket, getMyChatListCallback]);
-
   const chatActive=({id})=>{
     SetChatList(chats=>{
       return chats?.map(chatState=>{
@@ -235,3 +234,4 @@ export default function ChatList({ className }) {
     </section>
   );
 }
+export default memo(ChatList)

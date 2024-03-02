@@ -1,4 +1,5 @@
 import React, {
+  memo,
   useCallback,
   useContext,
   useEffect,
@@ -20,7 +21,7 @@ import { timeAgo } from "../../Hook/timeAgo";
 import { SocketContext } from "../../contexts/SocketProvider";
 import style from "./index.module.scss";
 
-export default function ShowChat() {
+function ShowChat() {
   const socket = useContext(SocketContext);
   const username = useSelector((store) => store?.authStore?.user?.username);
   const uid = useSelector((store) => store?.authStore?.user?.uid);
@@ -53,7 +54,7 @@ export default function ShowChat() {
 
   useEffect(() => {
     getMessagesCallback();
-  }, [socket?.socketOnMessage, getMessagesCallback]);
+  }, [getMessagesCallback,socket?.socketOnMessage]);
 
   useEffect(() => {
     showChatRef.current.scrollTo(0, showChatRef.current.scrollHeight);
@@ -229,3 +230,5 @@ export default function ShowChat() {
     </div>
   );
 }
+
+export default memo(ShowChat)

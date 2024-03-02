@@ -1,10 +1,10 @@
 import { Formik } from 'formik'
-import React from 'react'
+import React, { memo } from 'react'
 import { createChat } from '../../../Hook/Api/ChatApi'
 import { useDispatch, useSelector } from 'react-redux'
 import { AddChatModal } from '../../../Reducer/ChatReducer'
 
-export default function CreateChatModal() {
+function CreateChatModal() {
     const username=useSelector(store=>store?.authStore?.user?.username)
     const uid=useSelector(store=>store?.authStore?.user?.uid)
     const dispatch=useDispatch()
@@ -55,3 +55,4 @@ export default function CreateChatModal() {
   </div>
   )
 }
+export default memo(CreateChatModal)

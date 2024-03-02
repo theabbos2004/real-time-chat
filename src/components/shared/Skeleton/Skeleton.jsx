@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { memo } from 'react'
 
-export default function Skeleton({
+function Skeleton({
     count=1,
     classNameBox,
     className,
@@ -20,3 +20,4 @@ export default function Skeleton({
     </ul>
   )
 }
+export default memo(Skeleton)
