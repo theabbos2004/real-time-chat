@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { Formik } from "formik";
 import useAuth from "../../../Hook/useAuth";
 import style from "./index.css";
@@ -222,4 +222,4 @@ const UpdateProfileForm = () => {
   }
 };
 
-export default UpdateProfileForm;
+export default memo(UpdateProfileForm);

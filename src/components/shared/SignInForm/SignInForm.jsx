@@ -1,7 +1,6 @@
-import React from "react";
+import React, { memo } from "react";
 import { Formik } from "formik";
 import useAuth from "../../../Hook/useAuth";
-import style from "./index.module.css"
 const SignInForm = ({ setIsSignUp }) => {
   const { signIn, isLoading, error } = useAuth()
   return (
@@ -93,4 +92,4 @@ const SignInForm = ({ setIsSignUp }) => {
   );
 };
 
-export default SignInForm;
+export default memo(SignInForm);

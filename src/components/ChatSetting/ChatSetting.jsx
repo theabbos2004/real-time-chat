@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { ChatEvent, ChatMembers, Members } from "../index";
 import { isChatsettings } from "../../Reducer/ChatReducer";
-export default function ChatSetting({ className }) {
+function ChatSetting({ className }) {
   const dispatch = useDispatch();
   const [menu, SetMenu] = useState([
     {
@@ -82,3 +82,4 @@ export default function ChatSetting({ className }) {
     </div>
   );
 }
+export default memo(ChatSetting)

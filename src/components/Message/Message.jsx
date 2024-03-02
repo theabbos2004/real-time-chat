@@ -1,7 +1,6 @@
-import React from 'react'
+import React, { memo } from 'react'
 import {Header, SendChat, ShowChat} from "../index"
-export default function Message({className}) {
-  
+function Message({className}) {
   return (
     <div 
       className={`h-100 px-0 ${className}`}
@@ -12,3 +11,4 @@ export default function Message({className}) {
     </div>
   )
 }
+export default memo(Message)

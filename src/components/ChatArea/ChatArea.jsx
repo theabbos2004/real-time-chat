@@ -1,10 +1,10 @@
-import React, { useContext, useEffect } from 'react'
+import React, { memo, useCallback, useContext, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ChatList, ChatSetting, Message } from "../index"
 import { setChatId } from '../../Reducer/ChatReducer'
 import { getMyChats } from '../../Hook/Api/ChatApi'
 import { SocketContext } from '../../contexts/SocketProvider'
-export default function ChatArea() {
+function ChatArea() {
   const socket =useContext(SocketContext)
   const username=useSelector(store=>store?.authStore?.user?.username)
   const uid=useSelector(store=>store?.authStore?.user?.uid)
@@ -14,8 +14,7 @@ export default function ChatArea() {
   
 
   const dispatch=useDispatch()
-
-  useEffect(()=>{
+  const getMyChatsCallback=useCallback(()=>{
     if(username){
       getMyChats({username,usersecret:uid}).then(Mychats=>{
         if(Mychats){
@@ -25,8 +24,10 @@ export default function ChatArea() {
             }
         }
       })}
-  },[socket,dispatch,uid,username,chatId])
-
+  },[dispatch,uid,username,chatId])
+  useEffect(()=>{
+    getMyChatsCallback()
+  },[getMyChatsCallback,socket])
   return (
     <div className='vh-100 row m-0 overflow-hidden'>
         <ChatList className={`${isChatList?"col-12":"d-none"} ${isChatsettings?"d-sm-none":"col-sm-4"} d-sm-block col-sm-5 col-lg-3`}/>
@@ -35,3 +36,4 @@ export default function ChatArea() {
     </div>
   )
 }
+export default memo(ChatArea)

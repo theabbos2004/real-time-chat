@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { memo, useCallback, useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Skeleton } from "../shared/index";
 import {
@@ -9,7 +9,7 @@ import {
   removeChatMember,
 } from "../../Hook/Api/ChatApi";
 import { SocketContext } from "../../contexts/SocketProvider";
-export default function Members() {
+function Members() {
   const socket = useContext(SocketContext);
   const username = useSelector((store) => store?.authStore?.user?.username);
   const uid = useSelector((store) => store?.authStore?.user?.uid);
@@ -193,3 +193,4 @@ export default function Members() {
     </ul>
   );
 }
+export default memo(Members)

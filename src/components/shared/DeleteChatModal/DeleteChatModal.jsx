@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setChatId } from '../../../Reducer/ChatReducer'
 import { removeChat } from '../../../Hook/Api/ChatApi'
 
-export default function DeleteChatModal({deleteChatModal=()=>{}}) {
+ function DeleteChatModal({deleteChatModal=()=>{}}) {
     const username=useSelector(store=>store?.authStore?.user?.username)
     const uid=useSelector(store=>store?.authStore?.user?.uid)
     const chatId=useSelector(store=>store?.chatStore?.chatId)
@@ -41,3 +41,4 @@ export default function DeleteChatModal({deleteChatModal=()=>{}}) {
     </div>
   )
 }
+export default memo(DeleteChatModal)

@@ -1,33 +1,33 @@
 import { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { userReducer } from "../Reducer/authReducer";
 
 const AuthProvider =({children})=>{
-    const user=useSelector(store=>store?.authStore?.user)
-    let dispatch = useDispatch()
-    let navigate = useNavigate()
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
-    const setNavigate=useCallback((pathUrl)=>{
-        navigate(pathUrl)
-    },[])
+    const username=JSON.parse(localStorage.getItem("chat_engine"))?.username
+    const uid=JSON.parse(localStorage.getItem("chat_engine"))?.uid
+    const id=JSON.parse(localStorage.getItem("chat_engine"))?.id
 
-    useEffect(()=>{
-        let username=JSON.parse(localStorage.getItem("chat_engine"))?.username
-        let uid=JSON.parse(localStorage.getItem("chat_engine"))?.uid
-        let id=JSON.parse(localStorage.getItem("chat_engine"))?.id
+    const authCallback=useCallback(()=>{
         auth.onAuthStateChanged((user)=>{
             if(user && username && uid){
                 dispatch(userReducer({id,username,uid:user?.uid}))
-                setNavigate("/")
+                navigate("/")
             }
             else{
-                setNavigate("/auth")
+                navigate("/auth")
             }
         })
-    }, [dispatch, user?.username ,setNavigate]);
+    },[dispatch, username , uid , id ,navigate])
 
-    return children
+    useEffect(()=>{
+        authCallback()
+    }, [authCallback]);
+
+    return (username && uid) && children
 }
 export default AuthProvider

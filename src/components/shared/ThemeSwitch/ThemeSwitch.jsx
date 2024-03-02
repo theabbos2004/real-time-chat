@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import style from "./index.module.scss"
-export default function ThemeSwitch() {
+function ThemeSwitch() {
     const [dark,setDark]=useState(true)
     const lightTheme=()=>{
         setDark(false)
@@ -34,3 +34,4 @@ export default function ThemeSwitch() {
     </div>
   )
 }
+export default memo(ThemeSwitch)
