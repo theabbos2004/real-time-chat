@@ -1,14 +1,19 @@
 import React, { memo } from "react";
 import { Formik } from "formik";
 import useAuth from "../../../Hook/useAuth";
+import { useNavigate } from "react-router-dom";
 const SignInForm = ({ setIsSignUp }) => {
   const { signIn, isLoading, error } = useAuth()
+  const navigate = useNavigate()
   return (
     <Formik
       initialValues={{ username: "John_1", email: "john@gmail.com", password: "aaaaaaaa" }}
       onSubmit={async (values, actions) => {
         let { auth } = await signIn(values)
-        auth && actions.resetForm({ values: { username: "", email: "", password: "" } })
+        if(auth){
+          actions.resetForm({ values: { username: "", email: "", password: "" } });
+          navigate("/")
+        } 
       }}
     >
       {({

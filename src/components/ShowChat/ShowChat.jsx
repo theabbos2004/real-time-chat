@@ -100,7 +100,7 @@ function ShowChat() {
         ) : (
           chatDetails?.map((item, index) =>
             item?.sender?.username === username ? (
-              <li className="my-3 row m-0" key={index}>
+              <li className="my-3 row m-0 gap-1" key={index}>
                 <div className="col-3 col-lg-5 d-flex justify-content-end">
                   {item?.event ? (
                     <div
@@ -162,7 +162,7 @@ function ShowChat() {
                   <div className="col-3 col-md-2 m-0 d-flex justify-content-center align-items-end p-0">
                     <div
                       className="rounded-5 overflow-hidden position-relative"
-                      style={{ width: "3rem",height:"3rem",border:"0.2rem solid var(--border-color)"}}
+                      style={{ width: "2.5rem",height:"2.5rem",border:"0.2rem solid var(--border-color)"}}
                     >
                       <img
                         src={
@@ -183,7 +183,7 @@ function ShowChat() {
                   <div className="col-3 col-md-2 m-0 px-1 d-flex justify-content-center align-items-end">
                     <div
                       className="rounded-5 overflow-hidden position-relative"
-                      style={{ width: "3rem",height:"3rem",border:"0.2rem solid var(--border-color)"}}
+                      style={{ width: "2.5rem",height:"2.5rem",border:"0.2rem solid var(--border-color)"}}
                     >
                       <img
                         src={

@@ -85,7 +85,7 @@ function ChatList({ className }) {
           <div className="col-3 col-md-2 col-lg-3 m-0 d-flex align-items-center">
             <div
               className="bg-secondary rounded-5 position-relative"
-              style={{ width: "2.5rem",height:"2.5rem",border:"0.2rem solid var(--border-color)"}}
+              style={{ width: "2.2rem",height:"2.2rem",border:"0.2rem solid var(--border-color)"}}
             >
               <img
                 src={
@@ -153,7 +153,7 @@ function ChatList({ className }) {
                   <div className="col-3 col-md-2 col-lg-3 m-0 d-flex align-items-center">
                     <div
                       className="bg-secondary rounded-5 position-relative"
-                      style={{ width: "3rem",height:"3rem",border:"0.2rem solid var(--border-color)"}}
+                      style={{ width: "2.5em",height:"2.5em",border:"0.2rem solid var(--border-color)"}}
                     >
                       <img
                         src={

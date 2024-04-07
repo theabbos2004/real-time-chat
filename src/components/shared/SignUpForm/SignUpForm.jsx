@@ -2,8 +2,10 @@ import React, { memo } from "react";
 import { Formik } from "formik";
 import useAuth from "../../../Hook/useAuth";
 import style from "./index.module.css"
+import { useNavigate } from "react-router-dom";
 const SignUpForm = ({ setIsSignUp }) => {
   const { signUp, isLoading, error } = useAuth()
+  const navigate = useNavigate()
   return (
     <Formik
       initialValues={{ firstname:"",lastname:"", username: "", email: "", password: ""}}
@@ -11,7 +13,10 @@ const SignUpForm = ({ setIsSignUp }) => {
         let {firstname,lastname,username,email,password}=values
         if (firstname?.length && lastname?.length && username?.length && email?.length && password?.length) {
           let { auth } = await signUp(values)
-          auth && actions.resetForm({ values: { firstname:"",lastname:"",username: "", email: "", password: ""} })
+          if(auth){
+            actions.resetForm({ values: { firstname:"",lastname:"",username: "", email: "", password: ""} })
+            navigate("/")
+          }
         }
       }}
     >
