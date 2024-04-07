@@ -16,7 +16,6 @@ const AuthProvider =({children})=>{
         auth.onAuthStateChanged((user)=>{
             if(user && username && uid){
                 dispatch(userReducer({id,username,uid:user?.uid}))
-                navigate("/")
             }
             else{
                 navigate("/auth")
@@ -28,6 +27,6 @@ const AuthProvider =({children})=>{
         authCallback()
     }, [authCallback]);
 
-    return (username && uid) && children
+    return children
 }
 export default AuthProvider

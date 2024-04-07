@@ -64,9 +64,16 @@ function Members() {
         >
           group not selected
         </li>
-      ) : !chatDetails?.length > 0 ? (
+      ) : !chatDetails ? (
         <li className="row">
           <Skeleton count={4} height="2.8rem" classNameBox="m-0 my-2" />
+        </li>
+      ) : !chatDetails?.length > 0 ? (
+        <li
+          className="row m-0 px-1 my-2 text-center d-flex justify-content-center align-content-center"
+          style={{ height: "2.8rem" }}
+        >
+          members are not available
         </li>
       ) : (
         chatDetails?.map((item, index) => (
